@@ -16,15 +16,16 @@
   border: 1px solid maroon;
   padding: 10px;
   margin: 0px 5px 5px;
-  background-color: rgba(10, 50, 10, 0.1);
+  background-color: rgba(105, 138, 169, 0.1);
 }
 
 .components code{
   white-space: pre;
+  font-size: small;
 }
 
 .baton{
-  background-color: rgba(10, 50, 10, 0.1);
+  background-color: rgba(105, 138, 169, 0.1);
   border: 1px solid maroon;
   padding: 5px;
   margin: 5px;
@@ -38,7 +39,11 @@
 }
 
 .table-matrix tr:nth-child(2n){
-  background-color: rgba(10, 50, 10, 0.1);
+  background-color: rgba(105, 138, 169, 0.5);
+}
+
+.table-matrix td, .table-matrix th {
+  border: 1px solid maroon;
 }
 
 #cy div {

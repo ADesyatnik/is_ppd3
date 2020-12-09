@@ -120,9 +120,9 @@ function App() {
                 <option value="nonAlgorithm">Алгоритм не выбран</option>
                 <option value="myHeadache">Обратное размещение при равном и неравном количестве элементов и позиций</option>
               </select>
-              <button className="baton reset">Сброс построения</button>
-              {/* <div id="cy"></div> */}
+              <button className="baton">Настройки алгоритма и области построения</button>
               <OutputGraph plate={plate} renderMatrix={renderMatrixR}/>
+              <button className="baton reset">Сброс построения</button>
              </div>}
         </div>
       </div>
