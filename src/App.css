@@ -4,6 +4,8 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   min-width: 1280px;
+  font-family: 'Roboto';
+  font-variant-caps: petite-caps;
 }
 
 .hide {
@@ -26,6 +28,8 @@
   border: 1px solid maroon;
   padding: 5px;
   margin: 5px;
+  font-family: 'Roboto';
+  font-variant-caps: petite-caps;
 }
 
 .reset {

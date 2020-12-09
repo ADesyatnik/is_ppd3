@@ -104,7 +104,7 @@ export default function ComponentsGraph({ plate, renderMatrix }) {
                 style: {
                   'background-color': '#666',
                   'label': 'data(id)',
-                  'shape': 'diamond',
+                  'shape': 'barrel',
                 }
               },
         ],
