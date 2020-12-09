@@ -102,13 +102,20 @@ export default function ComponentsGraph({ plate, renderMatrix }) {
             {
                 selector: 'node',
                 style: {
-                  'background-color': '#666',
+                  'background-color': '#698aa9',
                   'label': 'data(id)',
                   'shape': 'barrel',
                 }
               },
+              {
+                selector: 'edge',
+                style: {
+                  'line-color': '#800000',
+                  'width': 1,
+                }
+              }, 
         ],
-        layout: { name: 'grid'},
+        layout: { name: 'circle'},
 
         // initial viewport state:
         zoom: 1,

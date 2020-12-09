@@ -25,7 +25,7 @@
 }
 
 .baton{
-  background-color: rgba(105, 138, 169, 0.1);
+  background-color: rgba(105, 138, 169, 0.4);
   border: 1px solid maroon;
   padding: 5px;
   margin: 5px;
@@ -39,11 +39,12 @@
 }
 
 .table-matrix tr:nth-child(2n){
-  background-color: rgba(105, 138, 169, 0.5);
+  background-color: rgba(105, 138, 169, 0.4);
 }
 
 .table-matrix td, .table-matrix th {
   border: 1px solid maroon;
+  font-weight: normal;
 }
 
 #cy div {

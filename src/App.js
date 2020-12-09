@@ -112,7 +112,7 @@ function App() {
         <div className="components matrix">
           <button onClick={() => setActiveTab(0)} className="baton switch-tab">Матрица R</button>
           <button onClick={() => setActiveTab(1)} className="baton switch-tab">Матрица Q</button>
-          <button onClick={() => setActiveTab(2)} className="baton switch-tab">Граф</button>
+          <button onClick={() => setActiveTab(2)} className="baton switch-tab">Граф коммутационной схемы</button>
              {activeTab===0 && <div className="slide"><OutputMatrix renderMatrix={renderMatrixR}/></div>}
              {activeTab===1 && <div className="slide"><OutputMatrix renderMatrix={renderMatrixQ}/></div>}
              {activeTab===2 && <div className="slide">
@@ -121,7 +121,8 @@ function App() {
                 <option value="myHeadache">Обратное размещение при равном и неравном количестве элементов и позиций</option>
               </select>
               <button className="baton">Настройки алгоритма и области построения</button>
-              <OutputGraph plate={plate} renderMatrix={renderMatrixR}/>
+              <div className="components"><OutputGraph plate={plate} renderMatrix={renderMatrixR}/></div>
+              <button className="baton">Экспортировать</button>
               <button className="baton reset">Сброс построения</button>
              </div>}
         </div>
