@@ -40,7 +40,9 @@ export default function ComponentsGraph({ plate, renderMatrix }) {
 
         container: graphRef.current, // container to render in
     
-        elements: [ ...linksNode, ...linksEdge ],
+        elements: [ 
+          ...linksNode, ...linksEdge
+      ],
         
         style: [ 
             {

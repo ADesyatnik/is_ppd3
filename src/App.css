@@ -28,9 +28,8 @@
   margin: 5px;
 }
 
-.right-baton{
-  position: absolute;
-  right: 15px;
+.label{
+  padding: 5px;
 }
 
 .reset {
