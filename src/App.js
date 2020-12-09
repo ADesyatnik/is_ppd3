@@ -116,8 +116,8 @@ function App() {
              {activeTab===0 && <div className="slide"><p>*Расчеты выполняются после загрузки файла</p></div>}
              {activeTab===1 && <div className="slide">
               <div className="components"><OutputGraph plate={plate} renderMatrix={renderMatrixR}/></div>
-              <h3>Матрица ВГС</h3>
-              <OutputMatrix renderMatrix={renderMatrixR}/>
+              <div className="components"><h3>Матрица ВГС</h3>
+              <OutputMatrix renderMatrix={renderMatrixR}/></div>
              </div>}
         </div>
       </div>
