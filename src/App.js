@@ -100,28 +100,22 @@ function App() {
     <div className="app">
       <div className="block-read">
         <div className="components file">
-          <h3>Исходные данные</h3>
+          <h3>Выбор файла</h3>
               <div className="file-field input-field components">
                 <input onChange={handleFileChange} type="file" />
               </div>
+              <h3>Содержимое файла</h3>
             <ListComponents data={fileData} />
         </div>
       </div>
 
       <div className="block-output-matrix">
         <div className="components matrix">
-          <button onClick={() => setActiveTab(0)} className="baton switch-tab">Матрица R</button>
-          <button onClick={() => setActiveTab(1)} className="baton switch-tab">Матрица Q</button>
-          <button onClick={() => setActiveTab(2)} className="baton switch-tab">Граф</button>
+          <button onClick={() => setActiveTab(0)} className="baton switch-tab">Матрица ВГС</button>
+          <button onClick={() => setActiveTab(1)} className="baton switch-tab">Отрисовка схемы</button>
+          <button className="baton right-baton">Алгоритм и параметры</button>
              {activeTab===0 && <div className="slide"><OutputMatrix renderMatrix={renderMatrixR}/></div>}
-             {activeTab===1 && <div className="slide"><OutputMatrix renderMatrix={renderMatrixQ}/></div>}
-             {activeTab===2 && <div className="slide">
-              <select className="baton">
-                <option value="nonAlgorithm">Алгоритм не выбран</option>
-                <option value="myHeadache">Обратное размещение при равном и неравном количестве элементов и позиций</option>
-              </select>
-              <button className="baton reset">Сброс построения</button>
-              {/* <div id="cy"></div> */}
+             {activeTab===1 && <div className="slide">
               <OutputGraph plate={plate} renderMatrix={renderMatrixR}/>
              </div>}
         </div>

@@ -11,62 +11,6 @@ export default function ComponentsGraph({ plate, renderMatrix }) {
       return null;
     }
 
-  
-    // const allComponents = plate.map((node) => node.components).flat();
-    // const components = [...new Set(allComponents.map((component) => component.name))].map((name) => ({
-    //   showName: `c-${name}`,
-    //   name,
-    //   outputs: [],
-    // }));
-  
-    // allComponents.forEach((component) => {
-    //   const findC = components.find((c) => c.name === component.name);
-  
-    //   if (findC) {
-    //     const indexOfFoundC = components.findIndex((c) => c.name === component.name);
-  
-    //     components[indexOfFoundC].outputs.push({
-    //       showName: component.output.trim(),
-    //       name: `${findC.name}::${component.output.trim()}`,
-    //       node: component.nodeName.trim(),
-    //       component: findC.name,
-    //     });
-    //   }
-    // });
-  
-    // const outputs = components.map((c) => c.outputs).flat();
-    // const nodes = outputs
-    //   .map((c) => c.node)
-    //   .flat()
-    //   .filter((v, i, a) => a.indexOf(v) === i);
-  
-    // const links = [];
-  
-    // outputs.forEach((o) => {
-    //   links.push({ source: o.name, target: o.node });
-    //   links.push({ source: o.component, target: o.name });
-    // });
-  
-    // const renderComponents = components?.map((c) => ({
-    //   id: c.name,
-    //   symbolType: 'square',
-    //   label: c.showName,
-    //   color: 'hotpink',
-    //   size: 4000,
-    // }));
-    // const renderNodes = nodes?.map((n) => ({
-    //   id: n,
-    //   symbolType: 'circle',
-    //   color: 'brown',
-    //   size: 4000,
-    // }));
-    // const renderOutputs = outputs?.map((o) => ({
-    //   id: o.name,
-    //   symbolType: 'cross',
-    //   color: 'seagreen',
-    //   size: 1800,
-    // }));
-
     const linksEdge = [];
     
     for (let i = renderMatrix._size[0]; i > 1; i--) {
@@ -102,11 +46,18 @@ export default function ComponentsGraph({ plate, renderMatrix }) {
             {
                 selector: 'node',
                 style: {
-                  'background-color': '#666',
+                  'background-color': '#115066',
                   'label': 'data(id)',
-                  'shape': 'diamond',
                 }
               },
+
+              {
+                selector: 'edge',
+                style: {
+                  'width': 1,
+                  'line-color': '#7ACDE9',
+                }
+              }
         ],
         layout: { name: 'grid'},
 
