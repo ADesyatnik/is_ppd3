@@ -18,7 +18,7 @@ export default function Matrix({ renderMatrix }) {
   });
 
   return (
-    <div className="components matrix">
+    <div>
       {renderMatrix && (
         <table className="table-matrix">
           <tbody>{renderMatrixBody}</tbody>
