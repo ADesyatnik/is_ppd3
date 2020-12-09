@@ -42,6 +42,15 @@
   background-color: rgba(122, 205, 233, 0.3);
 }
 
+.table-matrix th{
+  font-weight: normal;
+}
+
 #cy div {
-  height: 500px;
+  height: 250px;
+}
+
+.slide p {
+  font-size: 10px;
+  margin: 0 0 0 5px;
 }

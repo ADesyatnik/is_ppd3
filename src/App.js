@@ -111,12 +111,13 @@ function App() {
 
       <div className="block-output-matrix">
         <div className="components matrix">
-          <button onClick={() => setActiveTab(0)} className="baton switch-tab">Матрица ВГС</button>
-          <button onClick={() => setActiveTab(1)} className="baton switch-tab">Отрисовка схемы</button>
-          <button className="baton right-baton">Алгоритм и параметры</button>
-             {activeTab===0 && <div className="slide"><OutputMatrix renderMatrix={renderMatrixR}/></div>}
+          <button onClick={() => setActiveTab(1)} className="baton switch-tab">Построение схемы графа и расчет матрицы ВГС</button>
+          <button className="baton right-baton">Параметры алгоритма</button>
+             {activeTab===0 && <div className="slide"><p>*Расчеты выполняются после загрузки файла</p></div>}
              {activeTab===1 && <div className="slide">
-              <OutputGraph plate={plate} renderMatrix={renderMatrixR}/>
+              <div className="components"><OutputGraph plate={plate} renderMatrix={renderMatrixR}/></div>
+              <h3>Матрица ВГС</h3>
+              <OutputMatrix renderMatrix={renderMatrixR}/>
              </div>}
         </div>
       </div>

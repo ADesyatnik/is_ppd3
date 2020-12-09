@@ -20,7 +20,7 @@ export default function Matrix({ renderMatrix }) {
   return (
     <div>
       {renderMatrix && (
-        <table className="table-matrix">
+        <table cellspacing="0" className="table-matrix">
           <tbody>{renderMatrixBody}</tbody>
         </table>
       )}
