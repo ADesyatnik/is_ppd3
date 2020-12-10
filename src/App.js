@@ -113,11 +113,11 @@ function App() {
         <div className="components matrix">
         <p><span className="label">Шаг сетки:</span>
           <input type="text" size="4"></input></p>
-          <button onClick={() => setActiveTab(1)} className="baton switch-tab">Построение схемы графа и расчет матрицы ВГС</button>
+          <button onClick={() => setActiveTab(1)} className="baton switch-tab">Построение схемы графа и расчет матрицы R</button>
              {activeTab===0 && <div className="slide"><p>*Расчеты выполняются после загрузки файла</p></div>}
              {activeTab===1 && <div className="slide">
               <div className="components"><OutputGraph plate={plate} renderMatrix={renderMatrixR}/></div>
-              <div className="components"><h3>Матрица ВГС</h3>
+              <div className="components"><h3>Матрица R</h3>
               <OutputMatrix renderMatrix={renderMatrixR}/></div>
              </div>}
         </div>
