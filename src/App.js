@@ -39,6 +39,7 @@ function App() {
         return null;
       })
       .filter((t) => t);
+      debugger;
 
     setPlate(null);
     setPlate(plate);
