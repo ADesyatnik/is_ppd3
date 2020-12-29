@@ -112,7 +112,7 @@ function App() {
       <div className="block-output-matrix">
         <div className="components matrix">
         <p><span className="label">Шаг сетки:</span>
-          <input type="text" size="4"></input></p>
+          <input type="text" size="4" value="150"></input></p>
           <button onClick={() => setActiveTab(1)} className="baton switch-tab">Построение схемы графа и расчет матрицы R</button>
              {activeTab===0 && <div className="slide"><p>*Расчеты выполняются после загрузки файла</p></div>}
              {activeTab===1 && <div className="slide">

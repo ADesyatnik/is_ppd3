@@ -37,26 +37,27 @@ export default function ComponentsGraph({
     }
   }
 
-  //список узлов
+  //список узлов для отображения графа
   const linksNode = [];
 
   //сумма в строке матриы R
-  let sum = 0;
-  const linkMatrixC = [];
+  const matrixR = [];
 
+  let sum = 0;
   for (let i = 1; i < renderMatrix._size[0] + 1; i++) {
     for (let j = 1; j < renderMatrix._size[1] + 1; j++) {
       sum = sum + renderMatrix._data[i][j];
     }
-    linkMatrixC.push({
+    matrixR.push({
       name: renderMatrix._data[i][0],
-      sum: sum
+      sum: sum,
+      position: null,
     });
     sum = 0;
   }
 
   //поиск элемента-разъема х1 и удаление его из массива для последующей работы
-  linkMatrixC.forEach(e => {
+  matrixR.forEach(e => {
     if (e.name === "X1") {
       linksNode.push({
         data: {
@@ -64,18 +65,18 @@ export default function ComponentsGraph({
         },
         renderedPosition: {
           x: 0,
-          y: 0
+          y: 300
         },
         locked: false,
         grabbable: false
       });
-      const index = linkMatrixC.indexOf(e);
-      linkMatrixC.splice(index, 1);
+      const index = matrixR.indexOf(e);
+      matrixR.splice(index, 1);
     }
   });
 
   //подсчет компонентов, создание матрицы для их разещения
-  const sqrElem = Math.ceil(Math.sqrt(linkMatrixC.length));
+  const sqrElem = Math.ceil(Math.sqrt(matrixR.length));
   const placementMatrix = []
 
   for (let i = 0; i < sqrElem; i++) {
@@ -84,7 +85,6 @@ export default function ComponentsGraph({
       line.push({
         line: i,
         column: j,
-        component: false
       })
     }
     placementMatrix.push(line);
@@ -107,103 +107,94 @@ export default function ComponentsGraph({
         fromNode: pName,
         toNode: sName,
         distance: distanceBetween,
-        fromLine: pI,
-        fromColumn: pJ
+        lineFrom: pI,
+        columnFrom:pJ,
       });
     });
   });
 
-  //Создание матрицы D из строки элементов allDistance
-  const sqrDistance = Math.sqrt(allDistance.length);
-  const matrixDist = [];
-
-  let counter = 0;
-  for (let i = 0; i < sqrDistance; i++) {
-    const line = [];
-    for (let j = 0; j < sqrDistance; j++) {
-      line.push(allDistance[counter]);
-      counter = counter + 1;
+    //Создание матрицы D из строки элементов allDistance
+    const sqrDistance = Math.sqrt(allDistance.length);
+    const matrixDist = [];
+  
+    let counter = 0;
+    for (let i = 0; i < sqrDistance; i++) {
+      const line = [];
+      for (let j = 0; j < sqrDistance; j++) {
+        line.push(allDistance[counter]);
+        counter = counter + 1;
+      }
+      matrixDist.push(line);
     }
-    matrixDist.push(line);
-  }
-
-  //сумма в строках матрицы D подобно матрице C, то, что необходимо для алгоритма
-  const lengthMatrixD = [];
-
-  for (let i = 0; i < sqrDistance; i++) {
-    for (let j = 0; j < sqrDistance; j++) {
-      sum = sum + matrixDist[i][j].distance;
+  
+    //сумма в строках матрицы D подобно матрице C, то, что необходимо для алгоритма
+    const lengthMatrixD = [];
+  
+    for (let i = 0; i < sqrDistance; i++) {
+      for (let j = 0; j < sqrDistance; j++) {
+        sum = sum + matrixDist[i][j].distance;
+      }
+      lengthMatrixD.push({
+        name: matrixDist[i][0].fromNode,
+        sum: sum,
+        line: matrixDist[i][0].lineFrom,
+        column: matrixDist[i][0].columnFrom,
+      });
+      sum = 0;
     }
-    lengthMatrixD.push({
-      name: matrixDist[i][0].fromNode,
-      sum: sum,
-      line: matrixDist[i][0].fromLine,
-      column: matrixDist[i][0].fromColumn
-    });
-    sum = 0;
-  }
 
-  //сортировка C по возрастанию
-  linkMatrixC.sort((a, b) => a.sum < b.sum ? 1 : -1);
-
-  //сортировка D по убыванию
+  //сортировка D 
   lengthMatrixD.sort((a, b) => a.sum > b.sum ? 1 : -1);
 
-  //спихиваем элементы в общий массив
-  const solution = []
+  //сортировка R
+  matrixR.sort((a, b) => a.sum < b.sum ? 1 : -1)
 
   counter = 0;
-  linkMatrixC.forEach(e => {
-    let d = lengthMatrixD[counter];
-    solution.push({
-      nameNode: e.name,
-      nameCell: d.name,
-      cellLine: d.line,
-      cellColumn: d.column
-    });
+  matrixR.forEach( e=> {
+    e.position = lengthMatrixD[counter];
     counter++;
   });
 
-  //НЕ случайная растановка
-  solution.forEach(e =>{
-    linksNode.push({
-      data: {
-        id: e.nameNode
-      },
-      renderedPosition: {
-        x: 100 * (e.cellLine+1),
-        y: 100 * (e.cellColumn+1)
-      }
+  let store = [];
+  let f = 0;
+  let tmpName = "";
+  let tmpSum = 0; 
+  let index = -1;
+  matrixR.forEach(e=> {
+    store= [];
+    matrixR.forEach(i =>{
+      f = (e.sum-i.sum)*((e.position.column-i.position.column)+(e.position.line-i.position.line));
+      store.push({data:i, res: f});
     });
+
+    store.sort((a, b) => a.res < b.res ? 1 : -1);
+    if (store[0].res>0)
+    {
+      tmpName = store[0].data.name;
+      tmpSum = store[0].data.sum;
+      index = matrixR.findIndex(element => element.name === store[0].data.name);
+
+      matrixR[index].name = e.name;
+      matrixR[index].sum = e.sum;
+
+      e.sum = tmpSum;
+      e.name = tmpName;
+    }
   })
 
+  matrixR.forEach(e => {
 
-  // //случайная растановка
-  // counter = 0;
-  // for (let i = 0; i < sqrElem; i++) {
-  //   for (let j = 0; j < sqrElem; j++) {
-  //     if (!(placementMatrix[i][j].component)) {
-  //       if (counter >= linkMatrixC.length) {
-  //         break;
-  //       }
-  //       const e = linkMatrixC[counter];
-  //       linksNode.push({
-  //         data: {
-  //           id: e.name
-  //         },
-  //         renderedPosition: {
-  //           x: 100 * (placementMatrix[i][j].line + 1),
-  //           y: 100 * (placementMatrix[i][j].column + 1)
-  //         }
-  //       });
-  //       placementMatrix[i][j].component = true;
-  //       counter = counter + 1;
-  //     }
-  //   }
-  // }
+    linksNode.push({
+      data: {
+        id: e.name
+      },
+      renderedPosition: {
+        x: 150*(e.position.column+1),
+        y: 150*(e.position.line+1)
+      },
+    });
 
-
-
+  })
 
   function deployGraph() {
     cytoscape({
