@@ -19,6 +19,10 @@
   background-color: rgba(105, 138, 169, 0.1);
 }
 
+.graph {
+  background-color: rgba(105, 138, 169, 0.4);
+}
+
 .components code{
   white-space: pre;
   font-size: small;

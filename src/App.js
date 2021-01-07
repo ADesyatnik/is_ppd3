@@ -39,7 +39,6 @@ function App() {
         return null;
       })
       .filter((t) => t);
-      debugger;
 
     setPlate(null);
     setPlate(plate);
@@ -119,12 +118,22 @@ function App() {
              {activeTab===2 && <div className="slide">
               <select className="baton">
                 <option value="nonAlgorithm">Алгоритм не выбран</option>
-                <option value="myHeadache">Обратное размещение при равном и неравном количестве элементов и позиций</option>
+                <option value="myHeadache" selected="selected">Обратное размещение при равном и неравном количестве элементов и позиций</option>
               </select>
               <button className="baton">Настройки алгоритма и области построения</button>
-              <div className="components"><OutputGraph plate={plate} renderMatrix={renderMatrixR}/></div>
+              <div className="components graph"><OutputGraph plate={plate} renderMatrix={renderMatrixR}/></div>
               <button className="baton">Экспортировать</button>
-              <button className="baton reset">Сброс построения</button>
+              <button className="baton reset" onClick={() => setActiveTab(3)}>Сброс построения</button>
+             </div>}
+             {activeTab===3 && <div className="slide">
+              <select className="baton">
+                <option value="nonAlgorithm">Алгоритм не выбран</option>
+                <option value="myHeadache" selected="selected">Обратное размещение при равном и неравном количестве элементов и позиций</option>
+              </select>
+              <button className="baton">Настройки алгоритма и области построения</button>
+              <div className="components graph"><OutputGraph plate={plate} renderMatrix={renderMatrixR}/></div>
+              <button className="baton">Экспортировать</button>
+              <button className="baton reset" onClick={() => setActiveTab(2)}>Сброс построения</button>
              </div>}
         </div>
       </div>

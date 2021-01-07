@@ -63,8 +63,8 @@ export default function ComponentsGraph({
           id: e.name
         },
         renderedPosition: {
-          x: -200,
-          y: 100
+          x: 50,
+          y: 50
         },
         locked: false,
         grabbable: false
@@ -188,7 +188,7 @@ export default function ComponentsGraph({
             {
                 selector: 'node',
                 style: {
-                  'background-color': '#698aa9',
+                  'background-color': '#800000',
                   'label': 'data(id)',
                   'shape': 'barrel',
                 }
@@ -196,7 +196,7 @@ export default function ComponentsGraph({
               {
                 selector: 'edge',
                 style: {
-                  'line-color': '#800000',
+                  'line-color': '#ffffff',
                   'width': 1,
                 }
               }, 
