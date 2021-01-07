@@ -63,8 +63,8 @@ export default function ComponentsGraph({
           id: e.name
         },
         renderedPosition: {
-          x: 50,
-          y: 50
+          x: 0,
+          y: 100
         },
         locked: false,
         grabbable: false
@@ -196,7 +196,7 @@ export default function ComponentsGraph({
               {
                 selector: 'edge',
                 style: {
-                  'line-color': '#ffffff',
+                  'line-color': '#b4604e',
                   'width': 1,
                 }
               }, 
